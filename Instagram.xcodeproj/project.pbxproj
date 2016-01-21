@@ -12,6 +12,7 @@
 		3CDBD5C91C5177D7007D5FF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDBD5C71C5177D7007D5FF3 /* Main.storyboard */; };
 		3CDBD5CB1C5177D7007D5FF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CDBD5CA1C5177D7007D5FF3 /* Assets.xcassets */; };
 		3CDBD5CE1C5177D7007D5FF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDBD5CC1C5177D7007D5FF3 /* LaunchScreen.storyboard */; };
+		699473CE1C518144003C4EAE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699473CD1C518144003C4EAE /* PhotoCell.swift */; settings = {ASSET_TAGS = (); }; };
 		91928C01734B947C2AA59265 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF7DC948F172C8D61FAB7E4 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		3CDBD5CA1C5177D7007D5FF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CDBD5CD1C5177D7007D5FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CDBD5CF1C5177D7007D5FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		699473CD1C518144003C4EAE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		A225D39F92E6EFAADFB77710 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AEF7DC948F172C8D61FAB7E4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				3CDBD5C31C5177D7007D5FF3 /* AppDelegate.swift */,
 				3CDBD5C51C5177D7007D5FF3 /* PhotosViewController.swift */,
 				3CDBD5C71C5177D7007D5FF3 /* Main.storyboard */,
+				699473CD1C518144003C4EAE /* PhotoCell.swift */,
 				3CDBD5CA1C5177D7007D5FF3 /* Assets.xcassets */,
 				3CDBD5CC1C5177D7007D5FF3 /* LaunchScreen.storyboard */,
 				3CDBD5CF1C5177D7007D5FF3 /* Info.plist */,
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CDBD5C61C5177D7007D5FF3 /* PhotosViewController.swift in Sources */,
+				699473CE1C518144003C4EAE /* PhotoCell.swift in Sources */,
 				3CDBD5C41C5177D7007D5FF3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
