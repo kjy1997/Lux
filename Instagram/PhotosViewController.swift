@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var data : NSMutableArray = []
     var urlArray : [String] = []
     var userArray : [String] = []
+    var profileUrl : [String] = []
 
     @IBOutlet weak var tableView: UITableView!
    
@@ -47,6 +48,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                 let users = dic1["user"] as! NSDictionary
                                 let username = users["username"] as! String
                                 self.userArray.append(username)
+                                
+                                let profile = users["profile_picture"] as! String
+                                self.profileUrl.append(profile)
+                                
                                 let lowR = images["low_resolution"] as! NSDictionary
                                 let url = lowR["url"] as! String
                                 self.urlArray.append(url)
@@ -70,8 +75,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("photoCell", forIndexPath: indexPath) as! PhotoCell
 
-        let photoURL = NSURL(string:urlArray[indexPath.row])
-        
+        let photoURL = NSURL(string:urlArray[indexPath.section])
+        let userName = userArray[indexPath.row]
         
         cell.photoID.setImageWithURL(photoURL!)
         
@@ -80,9 +85,46 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return urlArray.count
+        return 1
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return data.count
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        headerView.backgroundColor = UIColor(red: 200, green: 200, blue: 200, alpha: 1)
+        
+        let profileView = UIImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+        profileView.clipsToBounds = true
+        profileView.layer.cornerRadius = 15;
+        profileView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).CGColor
+        profileView.layer.borderWidth = 1;
+        
+        // Use the section number to get the right URL
+        // profileView.setImageWithURL(...)
+        
+        let profileurl = NSURL(string:profileUrl[section])
+        profileView.setImageWithURL(profileurl!)
+        
+        headerView.addSubview(profileView)
+        
+        // Add a UILabel for the username here
+        
+        let label = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 30))
+        label.textColor = UIColor(red: 0, green: 0, blue: 200, alpha: 1)
+        let userName = userArray[section]
+        label.text = userName
+        headerView.addSubview(label)
+        return headerView
     }
 
+    
 
 }
 
