@@ -24,6 +24,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
+        let logo = UIImage(named: "Lux-1.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        
         // Do any additional setup after loading the view, typically from a nib.
         let clientId = "e05c462ebd86446ea48a5af73769b602"
         let url = NSURL(string:"https://api.instagram.com/v1/media/popular?client_id=\(clientId)")
@@ -98,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        headerView.backgroundColor = UIColor(red: 200, green: 200, blue: 200, alpha: 1)
+        headerView.backgroundColor = UIColor(red: 65, green: 20, blue: 2, alpha: 0.2)
         
         let profileView = UIImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
         profileView.clipsToBounds = true
@@ -116,8 +120,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // Add a UILabel for the username here
         
-        let label = UILabel(frame: CGRect(x: 50, y: 10, width: 200, height: 30))
-        label.textColor = UIColor(red: 0, green: 0, blue: 200, alpha: 1)
+        let label = UILabel(frame: CGRect(x: 50, y: 7, width: 200, height: 30))
+        label.textColor = UIColor(red: 0, green: 0, blue: 255, alpha: 1)
         let userName = userArray[section]
         label.text = userName
         headerView.addSubview(label)
