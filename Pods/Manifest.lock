@@ -20,11 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - DGElasticPullToRefresh (1.0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6)
+  - DGElasticPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
 
 COCOAPODS: 0.39.0

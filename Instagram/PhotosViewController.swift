@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import DGElasticPullToRefresh
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -67,6 +68,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         });
         task.resume()
         
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            
+            let clientId = "e05c462ebd86446ea48a5af73769b602"
+            let url = NSURL(string:"https://api.instagram.com/v1/media/popular?client_id=\(clientId)")
+            let request = NSURLRequest(URL: url!)
+            let session = NSURLSession(
+                configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+                delegate:nil,
+                delegateQueue:NSOperationQueue.mainQueue()
+            )
+            
+            let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
+                completionHandler: { (dataOrNil, response, error) in
+                    if let data = dataOrNil {
+                        if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                            data, options:[]) as? NSDictionary {
+                                NSLog("response: \(responseDictionary)")
+                                self!.data = responseDictionary["data"] as! NSMutableArray
+                        }
+                    }
+            });
+            
+            self?.tableView.reloadData()
+            self?.tableView.dg_stopLoading()
+            task.resume()
+            
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         
     }
@@ -80,7 +112,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("photoCell", forIndexPath: indexPath) as! PhotoCell
 
         let photoURL = NSURL(string:urlArray[indexPath.section])
-        let userName = userArray[indexPath.row]
         
         cell.photoID.setImageWithURL(photoURL!)
         

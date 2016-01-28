@@ -5,6 +5,8 @@ use_frameworks!
 
 pod ‘AFNetworking’, ‘~> 2.6’
 target 'Instagram' do
+pod "DGElasticPullToRefresh"
+
 
 end
 
