@@ -156,7 +156,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 self.tableView.reloadData()
         });
-        task.resume()
+
+               task.resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -184,6 +185,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -225,6 +230,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let vc = segue.destinationViewController as! PhotosDetailViewController
         let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
         vc.photoURL = urlArray[(indexPath?.section)!]
+        vc.data = data[(indexPath?.section)!] as! NSDictionary
     }
     
 
@@ -240,9 +246,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
                 isMoreDataLoading = true
                 loadMoreData()
+                
             }
             
         }
+        
         
     }
     

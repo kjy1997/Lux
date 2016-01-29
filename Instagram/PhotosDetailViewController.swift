@@ -11,12 +11,21 @@ import UIKit
 class PhotosDetailViewController: UIViewController {
 
     @IBOutlet var photoView: UIImageView!
+    @IBOutlet var captionLabel: UILabel!
     var photoURL : String!
+    var data : NSDictionary!
     override func viewDidLoad() {
         super.viewDidLoad()
         print(photoURL)
         photoView.setImageWithURL(NSURL(string: self.photoURL)!)
-        
+
+        for object in data{
+        let comments = data["caption"] as! NSDictionary
+        let text = comments["text"] as! String
+            captionLabel.text = text
+            
+        }
+          captionLabel.sizeToFit()
         // Do any additional setup after loading the view.
     }
 
