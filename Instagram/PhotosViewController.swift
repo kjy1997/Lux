@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import DGElasticPullToRefresh
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
     var data : NSMutableArray = []
     var urlArray : [String] = []
@@ -88,6 +88,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             data, options:[]) as? NSDictionary {
                                 NSLog("response: \(responseDictionary)")
                                 self!.data = responseDictionary["data"] as! NSMutableArray
+                                for object in self!.data {
+                                    let dic = object as! NSDictionary
+                                    let images = dic["images"] as! NSDictionary
+                                    let dic1 = object as! NSDictionary
+                                    let users = dic1["user"] as! NSDictionary
+                                    let username = users["username"] as! String
+                                    self!.userArray.append(username)
+                                    
+                                    let profile = users["profile_picture"] as! String
+                                    self!.profileUrl.append(profile)
+                                    
+                                    let lowR = images["low_resolution"] as! NSDictionary
+                                    let url = lowR["url"] as! String
+                                    self!.urlArray.append(url)
+                                }
+                                
                         }
                     }
             });
@@ -101,6 +117,46 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         
+    }
+    
+    func loadMoreData() {
+        let clientId = "e05c462ebd86446ea48a5af73769b602"
+        let url = NSURL(string:"https://api.instagram.com/v1/media/popular?client_id=\(clientId)")
+        let request = NSURLRequest(URL: url!)
+        let session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate:nil,
+            delegateQueue:NSOperationQueue.mainQueue()
+        )
+        
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
+            completionHandler: { (data, response, error) in
+                self.isMoreDataLoading = false
+                if let data = data {
+                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                        data, options:[]) as? NSDictionary {
+                            NSLog("response: \(responseDictionary)")
+                            self.data = responseDictionary["data"] as! NSMutableArray
+                            for object in self.data {
+                                let dic = object as! NSDictionary
+                                let images = dic["images"] as! NSDictionary
+                                let dic1 = object as! NSDictionary
+                                let users = dic1["user"] as! NSDictionary
+                                let username = users["username"] as! String
+                                self.userArray.append(username)
+                                
+                                let profile = users["profile_picture"] as! String
+                                self.profileUrl.append(profile)
+                                
+                                let lowR = images["low_resolution"] as! NSDictionary
+                                let url = lowR["url"] as! String
+                                self.urlArray.append(url)
+                            }
+                    }
+                }
+                self.tableView.reloadData()
+        });
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -159,6 +215,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return headerView
     }
 
+    
+    var isMoreDataLoading = false
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                loadMoreData()
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 }
