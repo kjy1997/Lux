@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             }
                             self.tableView.reloadData()
                     }
-                    print(self.urlArray)
+        
                 }
         });
         task.resume()
@@ -78,7 +78,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("photoCell", forIndexPath: indexPath) as! PhotoCell
-
         let photoURL = NSURL(string:urlArray[indexPath.section])
         let userName = userArray[indexPath.row]
         
@@ -127,6 +126,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         headerView.addSubview(label)
         return headerView
     }
+    
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+        let vc = segue.destinationViewController as! PhotosDetailViewController
+        let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)
+        vc.photoURL = urlArray[(indexPath?.section)!]
+    }
+    
 
     
 
