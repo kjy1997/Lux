@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class PhotosDetailViewController: UIViewController {
 
     @IBOutlet var photoView: UIImageView!
