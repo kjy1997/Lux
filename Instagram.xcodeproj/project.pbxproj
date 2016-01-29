@@ -15,6 +15,7 @@
 		3CF0A2121C5AB92D00ED3B3A /* PhotosDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0A2111C5AB92D00ED3B3A /* PhotosDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		699473CE1C518144003C4EAE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699473CD1C518144003C4EAE /* PhotoCell.swift */; settings = {ASSET_TAGS = (); }; };
 		91928C01734B947C2AA59265 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF7DC948F172C8D61FAB7E4 /* Pods.framework */; };
+		C3C377E02E86ABF3341FE8AD /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E531427A0A9DEB3E0C155C3C /* Pods_Instagram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		699473CD1C518144003C4EAE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		A225D39F92E6EFAADFB77710 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AEF7DC948F172C8D61FAB7E4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E531427A0A9DEB3E0C155C3C /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91928C01734B947C2AA59265 /* Pods.framework in Frameworks */,
+				C3C377E02E86ABF3341FE8AD /* Pods_Instagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF7DC948F172C8D61FAB7E4 /* Pods.framework */,
+				E531427A0A9DEB3E0C155C3C /* Pods_Instagram.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,7 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D8536AD28344E678D0F80A5F /* Embed Pods Frameworks */ = {
@@ -205,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
